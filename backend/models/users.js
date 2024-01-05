@@ -1,22 +1,23 @@
 const mongoose = require("mongoose");
 const userSchema = new mongoose.Schema({
-  firstName: { type: string, required: true },
+  firstName: { type:String, required: true },
 
-  lastName: { type: string, required: true },
+  lastName: { type: String, required: true },
 
-  email: { type: string, required: true, unique: true },
+  email: { type: String, required: true, unique: true },
 
-  password: { type: string, required: true },
+  password: { type: String, required: true },
 
-  age: { type: number, required: true },
+  age: { type: Number, required: true },
 
-  country: { type: string },
+  country: { type: String },
 
-  grade: { type: string },
+  grade: { type: String },
 
-  Specialization: { type: string },
+  Specialization: { type: String },
 
   role: { type: mongoose.Schema.Types.ObjectId, ref: "Role", required: true },
 });
 
 module.exports = mongoose.model("User", userSchema);
+

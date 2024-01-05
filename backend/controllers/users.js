@@ -21,3 +21,6 @@ newUser.save().then((result)=>{
       })}
 })
 }
+module.exports={
+    register
+}
