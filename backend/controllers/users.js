@@ -26,7 +26,7 @@ newUser.save().then((result)=>{
 
 const login=(req,res)=>{
     const {email,password}=req.body
-    usersModel.findOne({email}).populate("role").then((result)=>{
+    usersModel.findOne({email}).populate("role").then(async (result)=>{
         if(!result){
             res.status(403).json({
                 success:false,
@@ -34,7 +34,7 @@ const login=(req,res)=>{
             })
         }else{
             try {
-                const valid=bcrypt.compare(password,result.password)
+                const valid=await bcrypt.compare(password,result.password)
                 if (!valid) {
                     return res.status(403).json({
                       success: false,
@@ -50,18 +50,20 @@ const login=(req,res)=>{
                   const options={
                     expiresIn:"120m"
                   }
-                 const token= jwt.sign(payload,process.env.SECRET,Option)
+                 const token= jwt.sign(payload,process.env.SECRET,options)
                  res.status(200).json({
                     success: true,
                     message: `Valid login credentials`,
                     token: token,
                   })
             } catch (error) {
+                
                 throw new Error(error.massage)
             } 
         }
        
     }).catch((err)=>{
+        console.log("err from login controll",err);
         res.status(500).json({
             success: false,
             message: `Server Error`,
@@ -69,6 +71,8 @@ const login=(req,res)=>{
           })
     })
 }
+
+
 module.exports={
     register,
     login
