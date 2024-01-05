@@ -25,3 +25,6 @@ const creatLecture = (req, res) => {
       });
     });
 };
+module.exports={
+    creatLecture
+}
