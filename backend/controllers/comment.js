@@ -42,7 +42,29 @@ res.status(200).json({
         })
     })
 }
+
+const getAllComment=(req,res)=>{
+    commentModel.find({}).populate("commenter","firstName -_id").then((result)=>{
+        {result.length?res.status(200).json({
+            success:true,
+            message:"all comment",
+            comments: result
+        }) : res.status(404).json({
+            success:false,
+            message:"no comment yet",
+        }) }
+        
+    }).catch((err)=>{
+        res.status(500).json({
+            success:false,
+            message:"server error",
+            err:err.message
+        })
+    })
+}
+
 module.exports={
     creatComment,
-    updateCommentById
+    updateCommentById,
+    getAllComment
 }
