@@ -73,19 +73,14 @@ const updateLectureById = (req, res) => {
       { new: true }
     )
     .then((result) => {
-      {
-        result
-          ? res.status(200).json({
+       res.status(200).json({
               success: true,
               message: "lecture updated",
               lecture: result,
             })
-          : res.status(404).json({
-              success: false,
-              message: "lecture not found",
-            });
+          
       }
-    })
+    )
     .catch((err) => {
       res.status(500).json({
         success: false,

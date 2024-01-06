@@ -23,6 +23,26 @@ const creatComment = (req, res) => {
     });
 };
 
+const updateCommentById=(req,res)=>{
+    const {comment}=req.body
+    const {id}=req.params
+    commentModel.findByIdAndUpdate({_id:id},{comment},{new:true}).then((result)=>{
+res.status(200).json({
+    success: true,
+
+        message: "comment update",
+
+        comment: result,
+})
+    }).catch((err)=>{
+        res.status(500).json({
+            success: false,
+            message: "Server Error",
+            err: err.message,
+        })
+    })
+}
 module.exports={
-    creatComment
+    creatComment,
+    updateCommentById
 }
