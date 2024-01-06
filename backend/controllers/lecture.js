@@ -166,11 +166,41 @@ const getLectureByTitle = (req, res) => {
       })
     })
 };
+
+
+const deleteLectureByTeacher = (req, res) => {
+  const teacherId = req.params.teacher;
+  lectureModel
+    .deleteMany({
+      Teacher: teacherId,
+    })
+    .then((result) => {
+      {result.deletedCount?res.status(200).json({
+        success: true,
+      message: `Deleted lecture for the teacher ${teacherId} `
+      }):res.status(404).json({
+        success: false,
+        message: `not found lecture  for the teacher => ${teacherId} `
+      })}
+     
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+
+        message: "Server Error",
+
+        err: err.message,
+      });
+    });
+};
+
 module.exports = {
   creatLecture,
   getLectureByTeacher,
   updateLectureById,
   deletelectureById,
   getLectureById,
-  getLectureByTitle
+  getLectureByTitle,
+  deleteLectureByTeacher
 };
