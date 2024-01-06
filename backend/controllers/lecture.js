@@ -94,25 +94,56 @@ const updateLectureById = (req, res) => {
       });
     });
 };
-const deletelectureById=(req,res)=>{
-  const {id}=req.params
-  lectureModel.findByIdAndDelete({_id: id}).then((result)=>{
-    {result?res.status(200).json({success: true,
-      message: "lecture deleted "}):res.status(404).json({
-        success: false,
-message: "lecture not found "
-      })}
-  }).catch((err)=>{
-    res.status(500).json({
-      success: false,
-message: "server error ",
-err: err.message
+const deletelectureById = (req, res) => {
+  
+  const { id } = req.params;
+  lectureModel
+    .findByIdAndDelete({ _id: id })
+    .then((result) => {
+      {
+        result
+          ? res.status(200).json({ success: true, message: "lecture deleted " })
+          : res.status(404).json({
+              success: false,
+              message: "lecture not found ",
+            });
+      }
     })
-  })
-}
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "server error ",
+        err: err.message,
+      });
+    });
+};
+
+const getLectureById = (req, res) => {
+  console.log('req.query', req.query)
+  const { id } = req.query;
+  lectureModel
+    .findOne({ _id: id })
+    .populate("Teacher")
+    .then((result) => {
+      {
+        result
+          ? res.status(200).json({ success: true, lecture: result })
+          : res
+              .status(404)
+              .json({ seccess: false, message: "lecture not found" });
+      }
+    }).catch((err)=>{
+      res.status(500).json({
+        seccess:false,
+        message:"server error",
+        err : err.message
+      })
+    })
+};
 module.exports = {
   creatLecture,
   getLectureByTeacher,
   updateLectureById,
-  deletelectureById
+  deletelectureById,
+  getLectureById
 };
