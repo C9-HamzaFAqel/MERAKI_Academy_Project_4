@@ -148,11 +148,11 @@ const getLectureByTitle = (req, res) => {
   
   const { title } = req.params;
   lectureModel
-    .findOne({ title: title })
+    .find({ title: title })
     .populate("Teacher","firstName -_id")
     .then((result) => {
       {
-        result
+        result.length
           ? res.status(200).json({ success: true, lecture: result })
           : res
               .status(404)
@@ -195,6 +195,29 @@ const deleteLectureByTeacher = (req, res) => {
     });
 };
 
+
+const getLectureByGrade = (req, res) => {
+  
+  const { grade } = req.params;
+  lectureModel
+    .find({ grade: grade })
+    .populate("Teacher","firstName -_id")
+    .then((result) => {
+      {
+        result.length
+          ? res.status(200).json({ success: true, lecture: result })
+          : res
+              .status(404)
+              .json({ seccess: false, message: "lecture not found for this grade" });
+      }
+    }).catch((err)=>{
+      res.status(500).json({
+        seccess:false,
+        message:"server error",
+        err : err.message
+      })
+    })
+};
 module.exports = {
   creatLecture,
   getLectureByTeacher,
@@ -202,5 +225,6 @@ module.exports = {
   deletelectureById,
   getLectureById,
   getLectureByTitle,
-  deleteLectureByTeacher
+  deleteLectureByTeacher,
+  getLectureByGrade
 };

@@ -9,6 +9,7 @@ const {
   getLectureById,
   getLectureByTitle,
   deleteLectureByTeacher,
+  getLectureByGrade,
 } = require("../controllers/lecture");
 const lectureRouter = express.Router();
 
@@ -54,4 +55,6 @@ lectureRouter.get("/serch_3/:title", getLectureByTitle);
 
 
 lectureRouter.delete("/serch/:teacher",authentication,authorization("DELETE_LECTURE_FOR_TEACHER"), deleteLectureByTeacher);
+
+lectureRouter.get("/serch_4/:grade",getLectureByGrade)
 module.exports = lectureRouter;
