@@ -7,6 +7,7 @@ const {
   updateLectureById,
   deletelectureById,
   getLectureById,
+  getLectureByTitle,
 } = require("../controllers/lecture");
 const lectureRouter = express.Router();
 
@@ -16,7 +17,7 @@ lectureRouter.post(
   authorization("CREAT_LEACTURE"),
   creatLecture
 );
-lectureRouter.get("/:teacher", getLectureByTeacher);
+lectureRouter.get("/serch_1/:teacher", getLectureByTeacher);
 lectureRouter.put(
   "/:id",
   authentication,
@@ -29,5 +30,7 @@ lectureRouter.delete(
   authorization("DELETE_LECTURE"),
   deletelectureById
 );
-lectureRouter.get("/",authentication, getLectureById);
+lectureRouter.get("/serch_2/id",authentication, getLectureById);
+
+lectureRouter.get("/serch_3/:title",getLectureByTitle)
 module.exports = lectureRouter;
