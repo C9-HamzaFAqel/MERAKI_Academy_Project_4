@@ -10,6 +10,7 @@ const {
   getLectureByTitle,
   deleteLectureByTeacher,
   getLectureByGrade,
+  getFreeLecture,
 } = require("../controllers/lecture");
 const lectureRouter = express.Router();
 
@@ -57,4 +58,6 @@ lectureRouter.get("/serch_3/:title", getLectureByTitle);
 lectureRouter.delete("/serch/:teacher",authentication,authorization("DELETE_LECTURE_FOR_TEACHER"), deleteLectureByTeacher);
 
 lectureRouter.get("/serch_4/:grade",getLectureByGrade)
+
+lectureRouter.get("/serch_5/free",getFreeLecture)
 module.exports = lectureRouter;

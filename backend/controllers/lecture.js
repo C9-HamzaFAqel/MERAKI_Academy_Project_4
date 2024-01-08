@@ -1,7 +1,9 @@
+const lecture = require("../models/lecture");
 const lectureModel = require("../models/lecture");
 
 const creatLecture = (req, res) => {
   const { title, video, image, price, grade, Teacher } = req.body;
+  const comment=[]
   const newLecture = new lectureModel({
     title,
     video,
@@ -9,6 +11,7 @@ const creatLecture = (req, res) => {
     price,
     grade,
     Teacher,
+    comment
   });
   newLecture
     .save()
@@ -34,7 +37,7 @@ const getLectureByTeacher = (req, res) => {
   lectureModel
     .find({
       Teacher: teacherId,
-    })
+    }).populate(["comment",{path:"Teacher" , select :["firstName","lastName"]}])
     .then((lectures) => {
       console.log(lectures);
       {
@@ -213,6 +216,23 @@ const getLectureByGrade = (req, res) => {
       })
     })
 };
+
+
+const getFreeLecture=(req,res) =>{
+  lectureModel.find({price:0}).then((result)=>{
+    res.status(200).json({
+      success:true,
+      message:"free lecture",
+      freeLecture: result
+    })
+  }).catch((err)=>{
+    res.status(500).json({
+      success:false,
+      message:"server error",
+      err :err.message
+    })
+  })
+}
 module.exports = {
   creatLecture,
   getLectureByTeacher,
@@ -221,5 +241,6 @@ module.exports = {
   getLectureById,
   getLectureByTitle,
   deleteLectureByTeacher,
-  getLectureByGrade
+  getLectureByGrade,
+  getFreeLecture
 };

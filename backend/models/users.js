@@ -18,6 +18,8 @@ const userSchema = new mongoose.Schema({
   Specialization: { type: String },
 
   role: { type: mongoose.Schema.Types.ObjectId, ref: "Role", required: true },
+  corse :[{type:mongoose.Schema.Types.ObjectId,ref:"Buying"}],
+  favorit:[{type:mongoose.Schema.Types.ObjectId,ref:"Favorit"}]
 });
 userSchema.pre("save",async function (){
   this.email= this.email.toLowerCase()

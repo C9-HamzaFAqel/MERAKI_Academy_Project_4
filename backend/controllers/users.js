@@ -1,10 +1,14 @@
 const usersModel=require("../models/users")
 const bcrypt=require("bcryptjs")
 const jwt=require("jsonwebtoken")
+
+
 const register=(req,res)=>{
 const {firstName,lastName, email,password,age, country, grade ,role }=req.body
+const corse=[]
+const favorit=[]
 const newUser= new usersModel({
-    firstName,lastName, email,password,age, country, grade ,role
+    firstName,lastName, email,password,age, country, grade ,role,corse,favorit
 })
 newUser.save().then((result)=>{
     res.status(201).json({
@@ -43,7 +47,7 @@ const login=(req,res)=>{
                   }
                   const payload={
                    userId: result._id,
-                   Specialization : result. Specialization,
+                   Specialization : result.Specialization,
                    role : result.role,
                    country: result.country
                   }
