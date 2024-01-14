@@ -1,16 +1,16 @@
-const buyingLectureModul=require("../models/buyingLecture")
+const cartCourseModul=require("../models/cartCourse")
 const usersModel=require("../models/users")
-const creatbuyingLecture=(req,res)=>{
+const creatCartCourse=(req,res)=>{
     const userId=req.token.userId 
     const {corse}=req.body
-    const newbuingLecture= new buyingLectureModul({
+    const newCartCourse= new cartCourseModul({
        corse 
     })
-    newbuingLecture.save().then((result)=>{
+    newCartCourse.save().then((result)=>{
      usersModel.findByIdAndUpdate({_id:userId},{$push:{corse:result._id}},{new:true}).then(()=>{
       res.status(201).json({
         success: true,
-        message: "buyingLecture add",
+        message: "cartCourse add",
         corse: result,
       })
      }).catch((err)=>{
@@ -53,6 +53,6 @@ const getMyCorse=(req,res)=>{
   })
 }
 module.exports={
-    creatbuyingLecture,
+    creatCartCourse,
     getMyCorse
 }

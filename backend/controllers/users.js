@@ -4,11 +4,11 @@ const jwt=require("jsonwebtoken")
 
 
 const register=(req,res)=>{
-const {firstName,lastName, email,password,age, country, grade ,role }=req.body
+const {firstName,lastName, email,Image,password,age, country, grade ,role,Specialization }=req.body
 const corse=[]
 const favorit=[]
 const newUser= new usersModel({
-    firstName,lastName, email,password,age, country, grade ,role,corse,favorit
+    firstName,lastName, email,Image,password,age, country, grade ,role,corse,favorit,Specialization
 })
 newUser.save().then((result)=>{
     res.status(201).json({
@@ -76,8 +76,18 @@ const login=(req,res)=>{
     })
 }
 
-
+const getAllTeacher=(req,res)=>{
+    usersModel.find({role:"659c2864a51ce618919355bd"}).then((result)=>{
+        res.json({result:result})
+    }).catch((err)=>{
+        res.json({
+            success:false,
+            err:err.message
+        })
+    })
+}
 module.exports={
     register,
-    login
+    login,
+    getAllTeacher
 }

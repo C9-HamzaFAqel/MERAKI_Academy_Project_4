@@ -5,8 +5,8 @@ const authorization = require("../middleware/authorization");
 const commentRouter= express.Router()
 
 
-commentRouter.post("/creat/:lectureId",authentication,authorization("CREATE_COMMENTS"),creatComment)
-commentRouter.put("/update/:id",authentication,authorization("UPDATE_COMMENT"),updateCommentById)
+commentRouter.post("/creat/:courseId",authentication,authorization("CREATE_COMMENTS"),creatComment)
+commentRouter.put("/update/:commentId",authentication,authorization("UPDATE_COMMENTS"),updateCommentById)
 commentRouter.get("/get/comments",authentication,getAllComment)
-commentRouter.delete("/delete/:id",authentication,authorization("DELETE_COMMENT"),deleteCommentById)
+commentRouter.delete("/delete/:id",authentication,authorization("DELETE_COMMENTS"),deleteCommentById)
 module.exports=commentRouter

@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const lectureSchema = new mongoose.Schema({
+const courseSchema = new mongoose.Schema({
   title: { type: String, required: true },
   video: { type: String  },
   image:{type:String,required:true},
@@ -8,4 +8,4 @@ const lectureSchema = new mongoose.Schema({
   Teacher: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   comment:[{type:mongoose.Schema.Types.ObjectId,ref:"Comment"}]
 });
-module.exports = mongoose.model("Lecture", lectureSchema);
+module.exports = mongoose.model("Course", courseSchema);

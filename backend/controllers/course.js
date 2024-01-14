@@ -1,10 +1,10 @@
-const lecture = require("../models/lecture");
-const lectureModel = require("../models/lecture");
+const course = require("../models/course");
+const courseModel = require("../models/course");
 
-const creatLecture = (req, res) => {
+const creatCourse = (req, res) => {
   const { title, video, image, price, grade, Teacher } = req.body;
   const comment=[]
-  const newLecture = new lectureModel({
+  const newCourse = new courseModel({
     title,
     video,
     image,
@@ -13,13 +13,13 @@ const creatLecture = (req, res) => {
     Teacher,
     comment
   });
-  newLecture
+  newCourse
     .save()
     .then((result) => {
       res.status(201).json({
         success: true,
-        message: "lecture created",
-        lecture: result,
+        message: "course created",
+        course: result,
       });
     })
     .catch((err) => {
@@ -31,27 +31,26 @@ const creatLecture = (req, res) => {
     });
 };
 
-const getLectureByTeacher = (req, res) => {
+const getCourseByTeacher = (req, res) => {
   const teacherId = req.params.teacher;
-  console.log("teacherId", teacherId);
-  lectureModel
+  courseModel
     .find({
       Teacher: teacherId,
-    }).populate(["comment",{path:"Teacher" , select :["firstName","lastName"]}])
-    .then((lectures) => {
-      console.log(lectures);
+    }).populate([{path:"comment",populate:[{path:"commenter",select:["firstName"]}]},{path:"Teacher" , select :["firstName","lastName"]}])     /* [{path:"comment",select:["comment",{path:"commenter",select:["firstName"]}]},{path:"Teacher" , select :["firstName","lastName"]}] */
+    .then((courses) => {
+      console.log(courses);
       {
-        lectures.length
+        courses.length
           ? res.status(200).json({
               success: true,
 
-              message: `All the lectures for the teacher : ${teacherId}`,
+              message: `All the courses for the teacher : ${teacherId}`,
 
-              lectures: lectures,
+              courses: courses,
             })
           : res.status(404).json({
               success: false,
-              message: `The teacher => ${teacherId} has no lectures`,
+              message: `The teacher => ${teacherId} has no courses`,
             });
       }
     })
@@ -66,10 +65,10 @@ const getLectureByTeacher = (req, res) => {
     });
 };
 
-const updateLectureById = (req, res) => {
+const updateCourseById = (req, res) => {
   const { title, video, image, price, grade } = req.body;
   const { id } = req.params;
-  lectureModel
+  courseModel
     .findByIdAndUpdate(
       { _id: id },
       { title, video, image, price, grade },
@@ -78,8 +77,8 @@ const updateLectureById = (req, res) => {
     .then((result) => {
        res.status(200).json({
               success: true,
-              message: "lecture updated",
-              lecture: result,
+              message: "course updated",
+              course: result,
             })
           
       }
@@ -92,18 +91,18 @@ const updateLectureById = (req, res) => {
       });
     });
 };
-const deletelectureById = (req, res) => {
+const deleteCourseById = (req, res) => {
   
   const { id } = req.params;
-  lectureModel
+  courseModel
     .findByIdAndDelete({ _id: id })
     .then((result) => {
       {
         result
-          ? res.status(200).json({ success: true, message: "lecture deleted " })
+          ? res.status(200).json({ success: true, message: "course deleted " })
           : res.status(404).json({
               success: false,
-              message: "lecture not found ",
+              message: "course not found ",
             });
       }
     })
@@ -116,20 +115,19 @@ const deletelectureById = (req, res) => {
     });
 };
 
-const getLectureById = (req, res) => {
+const getCourseById = (req, res) => {
   
-  console.log('req.query', req.query)
-  const { id } = req.query;
-  lectureModel
+  const { id } = req.params;
+  courseModel
     .findOne({ _id: id })
-    .populate("Teacher","firstName -_id")
+    .populate([{path:"comment",populate:[{path:"commenter",select:["firstName"]}]},{path:"Teacher" , select :["firstName","lastName"]}])
     .then((result) => {
       {
         result
-          ? res.status(200).json({ success: true, lecture: result })
+          ? res.status(200).json({ success: true, course: result })
           : res
               .status(404)
-              .json({ seccess: false, message: "lecture not found" });
+              .json({ seccess: false, message: "course not found" });
       }
     }).catch((err)=>{
       res.status(500).json({
@@ -142,19 +140,19 @@ const getLectureById = (req, res) => {
 
 
 
-const getLectureByTitle = (req, res) => {
+const getCourseByTitle = (req, res) => {
   
   const { title } = req.params;
-  lectureModel
+  courseModel
     .find({ title: title })
     .populate("Teacher","firstName -_id")
     .then((result) => {
       {
         result.length
-          ? res.status(200).json({ success: true, lecture: result })
+          ? res.status(200).json({ success: true, course: result })
           : res
               .status(404)
-              .json({ seccess: false, message: "lecture not found" });
+              .json({ seccess: false, message: "course not found" });
       }
     }).catch((err)=>{
       res.status(500).json({
@@ -166,19 +164,19 @@ const getLectureByTitle = (req, res) => {
 };
 
 
-const deleteLectureByTeacher = (req, res) => {
+const deleteCourseByTeacher = (req, res) => {
   const teacherId = req.params.teacher;
-  lectureModel
+  courseModel
     .deleteMany({
       Teacher: teacherId,
     })
     .then((result) => {
       {result.deletedCount?res.status(200).json({
         success: true,
-      message: `Deleted lecture for the teacher ${teacherId} `
+      message: `Deleted course for the teacher ${teacherId} `
       }):res.status(404).json({
         success: false,
-        message: `not found lecture  for the teacher => ${teacherId} `
+        message: `not found course  for the teacher => ${teacherId} `
       })}
      
     })
@@ -194,19 +192,19 @@ const deleteLectureByTeacher = (req, res) => {
 };
 
 
-const getLectureByGrade = (req, res) => {
+const getCourseByGrade = (req, res) => {
   
   const { grade } = req.params;
-  lectureModel
+  courseModel
     .find({ grade: grade })
     .populate("Teacher","firstName -_id")
     .then((result) => {
       {
         result.length
-          ? res.status(200).json({ success: true, lecture: result })
+          ? res.status(200).json({ success: true, course: result })
           : res
               .status(404)
-              .json({ seccess: false, message: "lecture not found for this grade" });
+              .json({ seccess: false, message: "course not found for this grade" });
       }
     }).catch((err)=>{
       res.status(500).json({
@@ -218,12 +216,12 @@ const getLectureByGrade = (req, res) => {
 };
 
 
-const getFreeLecture=(req,res) =>{
-  lectureModel.find({price:0}).then((result)=>{
+const getFreeCourse=(req,res) =>{
+  courseModel.find({price:0}).then((result)=>{
     res.status(200).json({
       success:true,
-      message:"free lecture",
-      freeLecture: result
+      message:"free course",
+      freeCourse: result
     })
   }).catch((err)=>{
     res.status(500).json({
@@ -234,13 +232,13 @@ const getFreeLecture=(req,res) =>{
   })
 }
 module.exports = {
-  creatLecture,
-  getLectureByTeacher,
-  updateLectureById,
-  deletelectureById,
-  getLectureById,
-  getLectureByTitle,
-  deleteLectureByTeacher,
-  getLectureByGrade,
-  getFreeLecture
+  creatCourse,
+  getCourseByTeacher,
+  updateCourseById,
+  deleteCourseById,
+  getCourseById,
+  getCourseByTitle,
+  deleteCourseByTeacher,
+  getCourseByGrade,
+  getFreeCourse
 };

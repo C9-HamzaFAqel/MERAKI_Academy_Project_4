@@ -11,15 +11,15 @@ app.use(express.json());
 
 const usersRouter=require("./routes/users")
 const roleRouter=require("./routes/role")
-const lectureRouter=require("./routes/lecture")
+const courseRouter=require("./routes/course")
 const commentRouter=require("./routes/comment")
-const buyingLectureRouter=require("./routes/buyingLecture")
+const cartCourseRouter=require("./routes/cartCourse")
 const favoritRouter=require("./routes/favorit")
 app.use("/users",usersRouter)
 app.use("/role",roleRouter)
-app.use("/lecture",lectureRouter)
+app.use("/course",courseRouter)
 app.use("/comment",commentRouter)
-app.use("/buying",buyingLectureRouter)
+app.use("/cart",cartCourseRouter)
 app.use("/favorit",favoritRouter)
 // Handles any other endpoints [unassigned - endpoints]
 app.use("*", (req, res) => res.status(404).json("NO content at this path"));

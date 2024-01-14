@@ -1,16 +1,16 @@
 const commentModel = require("../models/Comment");
-const lectureModel = require("../models/lecture");
+const courseModel = require("../models/course");
 const creatComment = (req, res) => {
   const { comment } = req.body;
   const commenter = req.token.userId;
-  const { lectureId } = req.params;
+  const { courseId } = req.params;
   const newComment = new commentModel({ comment, commenter });
   newComment
     .save()
     .then((result) => {
-      lectureModel
+      courseModel
         .findByIdAndUpdate(
-          { _id: lectureId },
+          { _id: courseId },
           { $push: { comment: result._id } },
           { new: true }
         )
@@ -18,7 +18,7 @@ const creatComment = (req, res) => {
            res.status(200).json({
                   success: true,
                   message: "comment add",
-                  lecture: result,
+                  course: result,
                 })}).catch((err)=>{
                   res.status(500).json({
                     success: false,
@@ -54,9 +54,9 @@ const creatComment = (req, res) => {
 
 const updateCommentById = (req, res) => {
   const { comment } = req.body;
-  const { id } = req.params;
+  const { commentId } = req.params;
   commentModel
-    .findByIdAndUpdate({ _id: id }, { comment }, { new: true })
+    .findByIdAndUpdate({ _id: commentId }, { comment }, { new: true })
     .then((result) => {
       res.status(200).json({
         success: true,

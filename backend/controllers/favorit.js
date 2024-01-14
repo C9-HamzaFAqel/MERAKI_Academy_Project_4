@@ -1,16 +1,16 @@
-const favoritLectureModel=require("../models/favoritLecture")
+const favoritCourseModel=require("../models/favoritCourse")
 const usersModel=require("../models/users")
-const creatFavoritLecture=(req,res)=>{
+const creatFavoritCourse=(req,res)=>{
     const userId=req.token.userId 
-    const {corse}=req.body
-    const newfavoritLecture= new favoritLectureModel({
-       corse 
+    const {course}=req.body
+    const newfavoritCourse= new favoritCourseModel({
+       course 
     })
-    newfavoritLecture.save().then((result)=>{
+    newfavoritCourse.save().then((result)=>{
      usersModel.findByIdAndUpdate({_id:userId},{$push:{favorit:result._id}},{new:true}).then(()=>{
       res.status(201).json({
         success: true,
-        message: "favoritLecture add",
+        message: "favoritCourse add",
         favorit: result,
       })
      }).catch((err)=>{
@@ -56,6 +56,6 @@ const getMyFavorit=(req,res)=>{
 
 
 module.exports={
-    creatFavoritLecture,
+    creatFavoritCourse,
     getMyFavorit
 }
