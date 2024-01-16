@@ -1,0 +1,14 @@
+.divNav{
+    position: fixed;
+    width: 100%;
+    background-color: blueviolet;
+    height: 9.1%;
+}
+.bg-body-tertiary{
+    background-color: black;
+}
+.text{
+    position: relative;
+    left: 12%;
+    
+}

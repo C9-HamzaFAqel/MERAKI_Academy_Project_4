@@ -1,0 +1,76 @@
+.ById{
+    width: 100%;
+    height: 70%;
+    position:absolute;
+    right: 1%;
+    top: 12%;
+    
+}
+.Card_1{
+    width: 65%;
+    height: 80%;
+    position: absolute;
+    right: 1%;
+    
+  border-left: solid rgb(243, 152, 152) 0.5px;
+}
+.Card_2{
+    width: 30%;
+   
+
+    position: absolute;
+    right: 66%;
+    .buttonCart{
+        position: absolute;
+        right: 30%;
+        bottom: 20%;
+        width: 50%;
+        background-color: rgb(153, 140, 23);
+    }
+    .link{
+        position: absolute;
+        right: 30%;
+        bottom: 10%;
+    }
+    .buttonFavorit{
+        position: absolute;
+        left: 5%;
+        top: 5%;
+    }
+    #price{
+        position: absolute;
+        right: 5%;
+        top: 5%;
+        
+    }
+}
+.comment{
+    position: absolute;
+    top:23rem;
+    right: 1%;
+    width: 90%;
+}
+.creatComment{
+    position: absolute;
+    top:20rem;
+    right: 1%;
+    width: 80%;
+    .butnComment{
+        position: relative;
+        right: 1%;
+    }
+    .inputComment{
+        position: relative;
+        left: 1%;
+        width: 99%;
+    }
+}
+
+.p-header{
+    position: relative;
+    right: 2%; 
+    left: 38%;
+    bottom: 10%;
+    
+}
+

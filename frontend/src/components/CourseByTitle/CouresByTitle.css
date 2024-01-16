@@ -1,0 +1,12 @@
+.course{
+    margin-bottom: 30px;
+    
+}
+.all{
+    width: 100%;
+    position:absolute;
+    top: 12%;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr ;
+    grid-template-rows: repeat(3,25%); */
+}
