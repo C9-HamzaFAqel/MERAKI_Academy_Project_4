@@ -16,7 +16,8 @@ export const NavbarBeforLogin = () => {
   const {AllCourse, setAllCourse}=useContext(selectContext)
   return (
     <div className='divNav'>
-<Navbar className="bg-body-tertiary">
+      
+<Navbar className="aaa">
       <Container >
         
         <NavDropdown title={<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-square" viewBox="0 0 16 16">

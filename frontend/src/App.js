@@ -13,6 +13,7 @@ import { LoginTest } from "./components/logintest/LoginTest";
 import { NavbarBeforLogin } from "./components/NavbarBeforLogin/NavbarBeforLogin";
 import { AllCourses } from "./components/all/AllCourses/AllCourses";
 import { CourseByTitle } from "./components/CourseByTitle/CourseByTitle";
+import { NavbarAfterLogin } from "./components/NavbarAfterLogin/NavbarAfterLogin";
 export const selectContext=createContext()
 function App() {
   const [selectedId, setSelectedId] = useState();
@@ -24,7 +25,7 @@ function App() {
 
     <div className="App">
     <NavbarBeforLogin/>
-   
+   <NavbarAfterLogin/>
 
     <Routes>
       <Route path="/courseByTitle" element={<CourseByTitle/>}/>
