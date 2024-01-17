@@ -27,7 +27,7 @@ export function NavbarAfterLogin() {
   const [title, setTitle] = useState("")
   const {AllCourse, setAllCourse}=useContext(selectContext)
   return (
-   <div>
+   <div className='divNav'>
     {/* {[false].map((expand) => (
         <Navbar key={expand} expand={expand} className="bg-body-tertiary mb-3">
           <Container fluid>
@@ -130,7 +130,10 @@ export function NavbarAfterLogin() {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link href="#action1">Home</Nav.Link>
+                  <Nav.Link href="#action1" onClick={()=>{
+                    console.log(true);
+                    navigate("/CraetCourse")
+                  }}>انشاء دورة </Nav.Link>
                   <Nav.Link href="#action2">Link</Nav.Link>
                   <NavDropdown
                     title="Dropdown"

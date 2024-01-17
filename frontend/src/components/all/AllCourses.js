@@ -8,7 +8,7 @@ import { Card, Container,Col, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { selectContext } from "../../../App";
+import { selectContext } from "../../App";
 export const AllCourses = () => {
   const navigate=useNavigate()
   const {elemId,setElemId,AllCourse, setAllCourse}=useContext(selectContext)

@@ -11,9 +11,10 @@ import { CourseById } from "./components/CourseById/CourseById";
 import { LoginTest } from "./components/logintest/LoginTest";
 
 import { NavbarBeforLogin } from "./components/NavbarBeforLogin/NavbarBeforLogin";
-import { AllCourses } from "./components/all/AllCourses/AllCourses";
+import { AllCourses } from "./components/all/AllCourses";
 import { CourseByTitle } from "./components/CourseByTitle/CourseByTitle";
 import { NavbarAfterLogin } from "./components/NavbarAfterLogin/NavbarAfterLogin";
+import { CreatCourse } from "./components/CreatCourse/CreatCourse";
 export const selectContext=createContext()
 function App() {
   const [selectedId, setSelectedId] = useState();
@@ -24,8 +25,9 @@ function App() {
     <selectContext.Provider value={{selectedId,setSelectedId,token,setToken,elemId,setElemId,AllCourse, setAllCourse}} > 
 
     <div className="App">
-    <NavbarBeforLogin/>
-   <NavbarAfterLogin/>
+      {token?<NavbarAfterLogin/>:<NavbarBeforLogin/>}
+    
+   
 
     <Routes>
       <Route path="/courseByTitle" element={<CourseByTitle/>}/>
@@ -33,6 +35,7 @@ function App() {
       <Route path="/" element={<AllCourses/>} />
       {/* <Route path="/register" element={<Register/>}/> */}
       <Route path="/courseById" element={<CourseById/>} />
+      <Route path="/CraetCourse" element={<CreatCourse/>} />
 
     </Routes>
 
