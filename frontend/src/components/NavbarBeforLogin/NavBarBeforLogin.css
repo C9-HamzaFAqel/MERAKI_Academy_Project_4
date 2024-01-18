@@ -1,18 +1,15 @@
-.divNav{
-    position: fixed;
-    width: 100%;
-    background-color: blueviolet;
-    height: 9.1%;
+.divNav {
+  width: 100%;
+  background-color: blueviolet;
+  height: 50px;
 }
-.bg-body-tertiary{
-    background-color: black;
+.bg-body-tertiary {
+  background-color: black;
 }
-.text{
-    position: relative;
-    left: 12%;
-    
+.text {
+  position: relative;
+  left: 12%;
 }
-.aaa{
-    background-color: rgb(239, 230, 247);
-   
+.aaa {
+  background-color: rgb(239, 230, 247);
 }

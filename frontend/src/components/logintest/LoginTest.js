@@ -44,9 +44,11 @@ export function LoginTest() {
            axios
             .post("http://localhost:5000/users/login", dataLogin)
             .then((res) => {
-              console.log(res);
+              console.log(res.data.role);
               setToken(res.data.token)
               localStorage.setItem("token",res.data.token)
+              localStorage.setItem("id",res.data.IdUser)
+              localStorage.setItem("role",res.data.role.role)
               navigate("/")
             })
             .catch((err) => {

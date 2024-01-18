@@ -34,7 +34,7 @@ export const AllCourses = () => {
             return (
               <div className="course" onClick={()=>{setElemId(elem._id)
                 
-                navigate("/courseById")
+                navigate(`/courseById/${elem._id}`)
               }}>
                 
      

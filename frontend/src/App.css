@@ -2,3 +2,8 @@
   text-align: center;
   
 }
+
+.layout{
+  height: calc(100vh - 65px);
+  overflow-y:auto ;
+}
