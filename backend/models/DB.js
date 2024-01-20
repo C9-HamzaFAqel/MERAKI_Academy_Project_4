@@ -7,3 +7,4 @@ mongoose.connect(process.env.DB_URI).then(
       console.log("FROM DB : ",err);
     }
   );
+  

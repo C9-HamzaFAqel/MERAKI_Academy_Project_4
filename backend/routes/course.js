@@ -11,10 +11,11 @@ const {
   deleteCourseByTeacher,
   getCourseByGrade,
   getFreeCourse,
+  getAllCourse,
 } = require("../controllers/course");
 const courseRouter = express.Router();
 
-
+courseRouter.get("/all/courses",getAllCourse)
 
 courseRouter.post(
   "/create",

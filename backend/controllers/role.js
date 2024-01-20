@@ -3,7 +3,7 @@ const RoleModel=require("../models/roles")
 
 const creatRole=(req,res)=>{
     const {role,permissions}=req.body
-    console.log(role,permissions);
+    
     const newRole= new RoleModel({
         role,permissions
     })

@@ -28,10 +28,9 @@ const creatCartCourse=(req,res)=>{
           });
     })
 }
-
 const getMyCorse=(req,res)=>{
   const {userId}=req.token
-  usersModel.findOne({_id:userId}).populate("corse").then((result)=>{
+  usersModel.findOne({_id:userId}).populate([{path:"corse",populate:[{path:"corse"}]}]).then((result)=>{
     if(result.corse.length){  
     res.status(200).json({
       success:true,

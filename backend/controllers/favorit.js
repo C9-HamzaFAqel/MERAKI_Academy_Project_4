@@ -31,7 +31,7 @@ const creatFavoritCourse=(req,res)=>{
 
 const getMyFavorit=(req,res)=>{
     const {userId}=req.token
-  usersModel.findOne({_id:userId}).populate("favorit").then((result)=>{
+  usersModel.findOne({_id:userId}).populate([{path:"favorit",populate:[{path:"course"}]}]).then((result)=>{
     if(result.favorit.length){  
     res.status(200).json({
       success:true,

@@ -35,20 +35,7 @@ const creatComment = (req, res) => {
           });
         });
 
-      /*   res.status(201).json({
-        success: true,
-
-        message: "comment created",
-
-        comment: result,
-      }); */
-    /* })
-    .catch((err) => {
-      res.status(500).json({
-        success: false,
-        message: "Server Error",
-        err: err.message,
-      }); */
+     
     }
 
 

@@ -59,6 +59,11 @@ const login=(req,res)=>{
                     success: true,
                     message: `Valid login credentials`,
                     token: token,
+                    IdUser : result._id,
+                    role :result.role,
+                    firstName: result.firstName,
+                    lastName:result.lastName,
+                    Image:result.Image
                   })
             } catch (error) {
                 
