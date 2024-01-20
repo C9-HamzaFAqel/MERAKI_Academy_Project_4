@@ -22,7 +22,6 @@ export const CourseById = () => {
    const [forbidden, setForbidden] = useState(false)
    const navigate=useNavigate()
    const {id}=useParams()
-   
   useEffect(() => {
     
    
@@ -33,14 +32,12 @@ export const CourseById = () => {
         },
       })
       .then((res) => {
-        console.log(res.data.course.video);
         setCourseById(res.data.course);
         setcomments(res.data.course.comment)
         setVideos(res.data.course.video)
       })
       .catch((err) => {
-        console.log(err.response.statusText
-          );
+        
         if(err.response.statusText==="Forbidden"){
          setForbidden(true)
         }
@@ -52,7 +49,7 @@ export const CourseById = () => {
        {forbidden&& 
        <div
       className="modal show"
-      style={{ display: 'block', position: 'initial' }}
+      style={{ display: 'block' }}
     >
       <Modal.Dialog>
         <Modal.Header closeButton>
@@ -80,11 +77,11 @@ export const CourseById = () => {
       <div>
         
       <div className="Card_1"> 
-        <Card style={{ height: '20rem' }}>
+        <Card style={{ height: '20rem' }} className="body_1">
     <Row>
   
       <Col>
-      <Card.Body>
+      <Card.Body >
         <br/>
         <Card.Title>{CourseById.title}</Card.Title><br/><br/>
         <Card.Text>
@@ -105,9 +102,8 @@ export const CourseById = () => {
     <Card style={{ height: '20rem' }}>
       <Card.Body>
       <button className="buttonFavorit" onClick={()=>{
-        const bodyFav={corse:elemId}
-        console.log(bodyFav);
-        console.log(elemId);
+        const bodyFav={course:elemId}
+      
         axios.post("http://localhost:5000/favorit/creat",bodyFav,{
           headers: {
             authorization: `Bearer ${token}`,
@@ -137,22 +133,16 @@ export const CourseById = () => {
           }).catch((err)=>{
             console.log(err.data);
           })
-        }}>Add  to  Cart    .<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
-  <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
-</svg></Button>
+        }}>تسجيل بالدورة    .</Button>
 <br/>
-        <div className="link"><Card.Link href="#">Card Link</Card.Link>
-        <Card.Link href="#" onClick={()=>{
-          
-          navigate("/video")
-        }}>فيديوهات الشرح</Card.Link></div>
+        
         
       </Card.Body>
     </Card></div>
     <div className="creatComment">
       
     <InputGroup className="mb-3"  >
-        <Button variant="outline-secondary" onClick={()=>{
+        <Button variant="primary" style={{marginTop:"10px"}} onClick={()=>{
           const textComment={comment:comment}
           axios.post(`http://localhost:5000/comment/creat/${CourseById._id}`,textComment,{
             headers: {
@@ -160,12 +150,13 @@ export const CourseById = () => {
             },
           }).then((res)=>{
             setcomments([...comments,res.data.course.comment])
+            navigate(0)
           }).catch((err)=>{
             console.log(err);
           })
           document.getElementById('myInput').value = ''
           
-        }}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-square-fill" viewBox="0 0 16 16">
+        }}><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-caret-left-square-fill" viewBox="0 0 16 16">
   <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm10.5 10V4a.5.5 0 0 0-.832-.374l-4.5 4a.5.5 0 0 0 0 .748l4.5 4A.5.5 0 0 0 10.5 12"/>
 </svg></Button>
         
@@ -173,33 +164,19 @@ export const CourseById = () => {
       setComment(e.target.value)
     }} />
       </InputGroup>
-      {/* <Container> 
-        <Row>  
-        <Col> 
-    <button className="butnComment">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-square-fill" viewBox="0 0 16 16">
-  <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm10.5 10V4a.5.5 0 0 0-.832-.374l-4.5 4a.5.5 0 0 0 0 .748l4.5 4A.5.5 0 0 0 10.5 12"/>
-</svg>
-    </button>
-    </Col>
-          <Col>   
-    <MDBInput wrapperClass='mb-4' placeholder="اكتب تعليق" id='newComment' type='text' size="lg" className="inputComment" />
-    </Col>
-   
-    </Row>
-    </Container> */}
+      
     </div>
     <div className="comment">
     
    
     
-    {toggle&& 
-    comments.map((elem,i)=>{
+    {toggle&& <div className="divvcomm">
+   { comments.map((elem,i)=>{
       return(  
-        <div style={{margin:"1rem"}}>
+        <div style={{marginRight:"4rem",marginTop:"1rem"}}>
 <Card>
       <Card.Header><div> 
-      <p  className="p-header"> {elem.commenter.firstName} <img src={elem.commenter.Image} width="50px" height="45px"   /></p>
+      <p  className="p-header"> {elem.commenter.firstName} <img src={elem.commenter.Image} width="50px" height="45px"  style={{border:"solid 1px black"}} /></p>
       
       </div></Card.Header>
       <Card.Body>
@@ -213,9 +190,11 @@ export const CourseById = () => {
     </Card>
     </div>
     )}
-    )}
+    )}</div>}
     
-      {toggle?<p class="small fw-bold mt-2 pt-1 mb-0" onClick={()=>{
+      {toggle?
+      <p class="small fw-bold mt-2 pt-1 mb-0" 
+      onClick={()=>{
       setToggle(false)
       
     }}> <a href="#!"
@@ -229,20 +208,7 @@ export const CourseById = () => {
       
     
     </div>
-    {/* <p>{CourseById.title}</p>
-      <img src={CourseById.image} />
-      <h3>مشاهدة المحاضرات</h3>
-      
-      
-      {CourseById.comment.map((com, i) => {
-        
-        return (
-          <>
-             <h5>{com.commenter.firstName}</h5> 
-            <p>{com.comment}</p>
-          </>
-        );
-        })} */}</div>}
+   </div>}
     </div>
   );
 };

@@ -40,7 +40,6 @@ body: data
 setUrl(data.url)
 })
 .catch(err => console.log(err))
-console.log(url);
 }
   return (
     <div className='creatCourse'>
@@ -150,10 +149,14 @@ console.log(url);
         <hr className="mx-n3" />
 
         <MDBBtn className='my-4' size='lg' onClick={()=>{
-         
             
             const dataBody={title:title,grade:grade,describtion:describtion,price:price,image:url}
-           console.log(dataBody);
+            
+            axios.put(`http://localhost:5000/course/${elemId}`,dataBody,{
+            headers: {
+              authorization: `Bearer ${token}`,
+            },
+          }).then((res)=>{}).catch((err)=>{console.log(err.data);})
         }}>تعديل </MDBBtn>
        
       </MDBCardBody>

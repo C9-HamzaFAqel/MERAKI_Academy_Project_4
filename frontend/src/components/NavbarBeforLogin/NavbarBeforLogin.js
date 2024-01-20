@@ -12,7 +12,7 @@ import { selectContext } from '../../App';
 
 export const NavbarBeforLogin = () => {
   const navigate=useNavigate()
-  const [title, setTitle] = useState("رياضيات")
+  const [title, setTitle] = useState("")
   const {AllCourse, setAllCourse}=useContext(selectContext)
   return (
     <div className='divNav'>
@@ -33,7 +33,7 @@ export const NavbarBeforLogin = () => {
               
             </NavDropdown>
 
-            <Navbar.Brand className='text' >Welcom To Aqel Academy</Navbar.Brand>
+            <Navbar.Brand className='text' >أهلا بكم بمنصة عقل للتعلم عن بعد</Navbar.Brand>
 
 
         <Navbar.Toggle />
@@ -43,7 +43,7 @@ export const NavbarBeforLogin = () => {
           <Col xs="auto">
             <Form.Control
               type="text"
-              placeholder="ابحث باستخدام اسم الدرس"
+              placeholder="ابحث باستخدام اسم الدورة"
               className=" mr-sm-2"
               onChange={(e)=>{
                 setTitle(e.target.value)
@@ -58,7 +58,7 @@ export const NavbarBeforLogin = () => {
             let atoString1 = JSON.stringify(a);
     localStorage.setItem("a", atoString1)
             navigate("/courseByTitle")
-            }}>Submit</Button>
+            }}>بحث</Button>
           </Col>
         </Row>
       </Form>

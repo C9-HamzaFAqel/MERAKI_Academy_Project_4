@@ -3,7 +3,6 @@ import { selectContext } from '../../App'
 
 export const Video = () => {
     const {Videos, setVideos}=useContext(selectContext)
-    console.log(Videos);
   return (
     <div>
      

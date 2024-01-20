@@ -11,7 +11,6 @@ export const CourseByTitle = () => {
     const navigate=useNavigate()
   const {elemId,setElemId,AllCourse, setAllCourse}=useContext(selectContext)
     const serch=JSON.parse(localStorage.getItem("a"))
-    console.log('AllCourse', AllCourse)
     return (
         <div className="all" style={{margin:"10px"}}>
            
@@ -55,39 +54,7 @@ export const CourseByTitle = () => {
             </Col>
           
         
-                   {/*  <Container> 
-                    <Row>
-                    
-                    <Col>
-                    
-                    <p>{elem.title}</p>
-                    
-                     
-                    
-                    <p> {elem.grade}الصف:ا </p>
-                   
-                    
-                    <p> السعر : $ {elem.price}</p>
-                    
-                    </Col>
-                    <Col>
-    
-                    <img src={elem.image} />
-                    </Col>
-                    </Row>
-                   
-                    </Container> */}
-                    {/*   <Card style={{ minWidth: '1px', margin: '10px' }}>
-      <Card.Img variant="lift" src={elem.image} />
-      <Card.Body>
-        <Card.Title>{elem.title}</Card.Title>
-        <Card.Text>{elem.grade}الصف:ا 
-        <br/>
-           السعر : $ {elem.price} 
-        </Card.Text>
-        <Button variant="primary">Example Button</Button>
-      </Card.Body>
-    </Card>   */}
+                  
                   </div>
                 );
               })}

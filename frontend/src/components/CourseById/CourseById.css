@@ -1,22 +1,26 @@
 .ById{
     width: 100%;
-    height: 70%;
+   
     position:absolute;
-    right: 1%;
-    top: 12%;
-    
+   
+    margin-top: 3%;
+   
+border-right:  solid 4px black;
+
 }
+
 .Card_1{
-    width: 65%;
+    width: 61%;
     height: 80%;
+    margin-right: 4%;
     position: absolute;
     right: 1%;
     
-  border-left: solid rgb(243, 152, 152) 0.5px;
 }
+
 .Card_2{
-    width: 30%;
-   
+    width: 25%;
+   margin-left:  40%;
 
     position: absolute;
     right: 66%;
@@ -47,8 +51,9 @@
 .comment{
     position: absolute;
     top:23rem;
-    right: 1%;
-    width: 90%;
+    width: 100%;
+    
+
 }
 .creatComment{
     position: absolute;
@@ -67,10 +72,16 @@
 }
 
 .p-header{
-    position: relative;
-    right: 2%; 
-    left: 38%;
-    bottom: 10%;
+    margin-left:80%;
     
 }
 
+#myInput{
+    margin: 10px;
+    margin-right:55px;
+}
+.divvcomm{
+    background: linear-gradient(to top right, rgb(165, 149, 172), rgb(67, 69, 100));
+    
+    padding-left: 110px;
+}

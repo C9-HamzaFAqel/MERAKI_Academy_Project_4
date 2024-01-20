@@ -39,15 +39,16 @@ export const AllCourses = () => {
                 
      
         <Col >
-          <Card style={{margin:"0 5px 0 5px"}} >
+          <Card style={{margin:"10px 20px 0 5px"}} >
             <Card.Img variant="top" src={elem.image  }   width="60" height="160" />
             <hr style={{margin:"8px 0 0 0"}}/>
             <Card.Body>
               <Card.Title>{elem.title}</Card.Title>
               <Card.Text>
-              {elem.Teacher.firstName}
+              الاستاذ 
               :
-                الاستاذ 
+              {elem.Teacher.firstName} {elem.Teacher.lastName}
+    
                 
                 
                 <br/>
@@ -66,39 +67,7 @@ export const AllCourses = () => {
         </Col>
       
     
-               {/*  <Container> 
-                <Row>
-                
-                <Col>
-                
-                <p>{elem.title}</p>
-                
-                 
-                
-                <p> {elem.grade}الصف:ا </p>
                
-                
-                <p> السعر : $ {elem.price}</p>
-                
-                </Col>
-                <Col>
-
-                <img src={elem.image} />
-                </Col>
-                </Row>
-               
-                </Container> */}
-                {/*   <Card style={{ minWidth: '1px', margin: '10px' }}>
-  <Card.Img variant="lift" src={elem.image} />
-  <Card.Body>
-    <Card.Title>{elem.title}</Card.Title>
-    <Card.Text>{elem.grade}الصف:ا 
-    <br/>
-       السعر : $ {elem.price} 
-    </Card.Text>
-    <Button variant="primary">Example Button</Button>
-  </Card.Body>
-</Card>   */}
               </div>
             );
           })}

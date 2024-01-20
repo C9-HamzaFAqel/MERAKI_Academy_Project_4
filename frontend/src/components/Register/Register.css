@@ -1,7 +1,25 @@
-.imgReg{
-    height: 400px;
-}
 .divreg{
-    background: linear-gradient(to bottom right, rgb(135, 131, 136), rgb(67, 69, 100));
+    text-align: center;
 
+}
+.hh3{
+    padding-top: 10px;
+    margin-right: 150px;
+    position: relative;
+    right: 20%;
+}
+.divselect{
+    padding-left: 20%;
+}
+.imgs{
+    border: 0.5px solid rgba(63, 45, 45, 0.74);
+    margin: 20px;
+    background: linear-gradient(to bottom right, rgb(237, 232, 240), rgb(142, 148, 229));
+
+}
+.imgs:hover{
+    cursor: grab;
+}
+.imgs:active{
+    cursor: grabbing;
 }

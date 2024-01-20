@@ -27,21 +27,22 @@ const [grade, setGrade] = useState("")
 const [describtion, setDescribtion] = useState("")
 const [price, setPrice] = useState()
 const [video, setVideo] = useState("");
-const [urlVideo, setUrlVideo] = useState("");
+const [arrVideo, setArrVideo] = useState([])
+const [urlVideo, setUrlVideo] = useState([]);
 const uploadVideo = () => {
   const data = new FormData();
   data.append("file", video);
   data.append("upload_preset", "hazemfowzi");
   data.append("cloud_name", "dlfdvvzgu");
-  /* https://api.cloudinary.com/v1_1/<cloud name>/<resource_type>/upload */
+  
   fetch("  https://api.cloudinary.com/v1_1/dlfdvvzgu/video/upload", {
     method: "post",
     body: data,
   })
     .then((resp) => resp.json())
     .then((data) => {
-      setUrlVideo(data.url);
-      console.log('data.url', data.url)
+      
+      setUrlVideo([...urlVideo,data.url])
     })
     .catch((err) => console.log(err));
 };
@@ -57,9 +58,9 @@ body: data
 .then(resp => resp.json())
 .then(data => {
 setUrl(data.url)
+
 })
 .catch(err => console.log(err))
-console.log(url);
 }
   return (
     <div className='creatCourse'>
@@ -173,8 +174,9 @@ console.log(url);
 <MDBCol md='9' className='pe-5'>
   <MDBFile size='lg' id='customFile' onChange={(e)=>{
       setVideo(e.target.files[0])
+
   }}/>
-  <div className="small text-muted mt-2">ملاحظة :يمكنك تحميل فيديو واحد في كل مرة<button onClick={uploadVideo}>تحميل</button></div>
+  <div className="small text-muted mt-2">ملاحظة :لا يمكنك تحميل اكثر من فيديو  في كل مرة...قم بتحميل الفيديو ثم اختيار الفيديو التالي<button onClick={uploadVideo}>تحميل</button></div>
 </MDBCol>
 
 
@@ -190,12 +192,11 @@ console.log(url);
         <MDBBtn className='my-4' size='lg' onClick={()=>{
           const id=localStorage.getItem("id")
             const dataBody={title:title,grade:grade,describtion:describtion,price:price,image:url,video:urlVideo,Teacher:localStorage.getItem("id")}
-            console.log(dataBody);
            axios.post("http://localhost:5000/course/create",dataBody,{
             headers: {
               authorization: `Bearer ${token}`,
             },
-          }).then((res)=>{}).catch((err)=>{console.log(err.data);})
+          }).then((res)=>{}).catch((err)=>{console.log(err);})
         }}>انشاء </MDBBtn>
        
       </MDBCardBody>
@@ -205,6 +206,8 @@ console.log(url);
 </MDBRow>
 
 </MDBContainer>
+
+
        </div>
   )
 }

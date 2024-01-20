@@ -18,6 +18,7 @@ import { FavoritCourse } from "./components/FavoritCourse/FavoritCourse";
 import { CartCourse } from "./components/CartCoutse/CartCourse";
 import { Register } from "./components/Register/Register";
 import { Video } from "./components/Video/Video";
+import {Error} from "./components/Error"
 export const selectContext = createContext();
 function App() {
   const [selectedId, setSelectedId] = useState();
@@ -47,7 +48,7 @@ function App() {
           <Route path="/courseByTitle" element={<CourseByTitle />} />
           <Route path="/Login" element={<LoginTest />} />
           <Route path="/" element={<AllCourses />} />
-          {/* <Route path="/register" element={<Register/>}/> */}
+          
           <Route path="/Register"  element={<Register/>}/>
           <Route path="/courseById/:id" element={<CourseById />} />
           <Route path="/CraetCourse" element={<CreatCourse />} />
@@ -56,6 +57,7 @@ function App() {
           <Route path="/favorit" element={<FavoritCourse/>} />
           <Route path="/Cart" element={<CartCourse/>}/>
           <Route path="/video" element={<Video/>}/>
+          <Route path="*" element={<Error/>}/>
         </Routes>
         </div>
       </div>
@@ -65,15 +67,4 @@ function App() {
 
 export default App;
 
-{
-  /*  <Nav/>
-      <LoginTest/>
-      <ColorSchemesExample/>
-      <Routes>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/register" element={<Register/>}/>
-        <Route path="/" element={<Home/>} />
-        <Route path= "/course"  element={<Course/>} />
-        <Route path="/courseById" element={<CourseById/>} />
-      </Routes> */
-}
+

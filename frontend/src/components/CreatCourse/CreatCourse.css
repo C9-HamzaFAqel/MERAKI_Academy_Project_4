@@ -2,11 +2,11 @@
     
     background: #f6ecf7;
 
-  /* Chrome 10-25, Safari 5.1-6 */
+  
   background: -webkit-linear-gradient(to bottom right, rgb(243, 220, 247), rgb(247, 213, 217));
 
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(to bottom right, rgb(135, 131, 136), rgb(67, 69, 100));
+  
+  background: linear-gradient(to bottom right, rgb(171, 169, 172), rgb(67, 69, 100));
   .innerCreat{
     height: 40%;
     width: 70%;
