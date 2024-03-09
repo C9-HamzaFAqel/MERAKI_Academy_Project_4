@@ -39,7 +39,7 @@ export const NavbarBeforLogin = () => {
         <Navbar.Toggle />
         
         <Form inline>
-        <Row>
+        {/* <Row> */}
           <Col xs="auto">
             <Form.Control
               type="text"
@@ -47,10 +47,16 @@ export const NavbarBeforLogin = () => {
               className=" mr-sm-2"
               onChange={(e)=>{
                 setTitle(e.target.value)
+                const a =AllCourse.filter((elem,i)=>{
+                  return elem.title.includes(e.target.value)
+                })
+                let atoString1 = JSON.stringify(a);
+        localStorage.setItem("a", atoString1)
+                navigate("/courseByTitle")
               }}
             />
           </Col>
-          <Col xs="auto">
+          {/* <Col xs="auto">
             <Button type="submit" onClick={()=>{
             const a =AllCourse.filter((elem,i)=>{
               return elem.title.includes(title)
@@ -59,8 +65,8 @@ export const NavbarBeforLogin = () => {
     localStorage.setItem("a", atoString1)
             navigate("/courseByTitle")
             }}>بحث</Button>
-          </Col>
-        </Row>
+          </Col> */}
+        {/* </Row> */}
       </Form>
       </Container>
     </Navbar>

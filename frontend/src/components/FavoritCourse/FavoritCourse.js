@@ -31,6 +31,7 @@ export const FavoritCourse = () => {
           <Row xs={1} md={3} className="g-4">
             {FavCourse.map((elem, i) => {
               return (
+                
                 <div>
                   <Col>
                     <Card style={{ margin: "10px 20px 0 5px" }}>

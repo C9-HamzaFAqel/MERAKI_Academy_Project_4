@@ -40,7 +40,7 @@ export const AllCourses = () => {
      
         <Col >
           <Card style={{margin:"10px 20px 0 5px"}} >
-            <Card.Img variant="top" src={elem.image  }   width="60" height="160" />
+            <Card.Img variant="top" src={elem.image  }   width="60" height="200" />
             <hr style={{margin:"8px 0 0 0"}}/>
             <Card.Body>
               <Card.Title>{elem.title}</Card.Title>
@@ -76,6 +76,7 @@ export const AllCourses = () => {
       ) : (
         <div></div>
       )}
+      
     </div>
   );
 }; 

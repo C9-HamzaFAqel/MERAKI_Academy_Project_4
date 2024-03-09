@@ -11,7 +11,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 
 
 import React,{ useContext, useState } from 'react'
-
+import "./NavbarAfterLogin.css"
 
 
 
@@ -39,7 +39,7 @@ export function NavbarAfterLogin() {
             setSelectedId("")
             navigate("/")
           }}>الصفحة الرئيسية</Nav.Link>
-            <Navbar.Brand href="#"><h4>{localStorage.getItem("name") }اهلا بك   </h4></Navbar.Brand>
+           
             <Form className="d-flex">
                   <Form.Control
                     type="search"
@@ -47,17 +47,24 @@ export function NavbarAfterLogin() {
                     className="me-2"
                     onChange={(e)=>{
                       setTitle(e.target.value)
+                      const a =AllCourse.filter((elem,i)=>{
+                        return elem.title.includes(e.target.value)
+                      })
+                      let atoString1 = JSON.stringify(a);
+              localStorage.setItem("a", atoString1)
+                      navigate("/courseByTitle")
                     }}
                   />
-                  <Button variant="outline-success" onClick={()=>{
+                 {/*  <Button variant="outline-success" onClick={()=>{
             const a =AllCourse.filter((elem,i)=>{
               return elem.title.includes(title)
             })
             let atoString1 = JSON.stringify(a);
     localStorage.setItem("a", atoString1)
             navigate("/courseByTitle")
-            }}>بحث</Button>
+            }}>بحث</Button> */}
                 </Form>
+                <Navbar.Brand href="#"><h4>{localStorage.getItem("name") }اهلا بك   </h4></Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}

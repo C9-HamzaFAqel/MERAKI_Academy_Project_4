@@ -49,7 +49,7 @@ export const CourseById = () => {
        {forbidden&& 
        <div
       className="modal show"
-      style={{ display: 'block' }}
+      style={{ display: 'block' ,marginTop:"5%"}}
     >
       <Modal.Dialog>
         <Modal.Header closeButton>
