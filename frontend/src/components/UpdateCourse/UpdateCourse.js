@@ -152,7 +152,7 @@ setUrl(data.url)
             
             const dataBody={title:title,grade:grade,describtion:describtion,price:price,image:url}
             
-            axios.put(`http://localhost:5000/course/${elemId}`,dataBody,{
+            axios.put(`https://meraki-academy-project-4.onrender.com/course/${elemId}`,dataBody,{
             headers: {
               authorization: `Bearer ${token}`,
             },

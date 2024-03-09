@@ -26,7 +26,7 @@ export const CourseById = () => {
     
    
     axios
-      .get(`http://localhost:5000/course/serch_2/${id}`, {
+      .get(`https://meraki-academy-project-4.onrender.com/course/serch_2/${id}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -104,7 +104,7 @@ export const CourseById = () => {
       <button className="buttonFavorit" onClick={()=>{
         const bodyFav={course:elemId}
       
-        axios.post("http://localhost:5000/favorit/creat",bodyFav,{
+        axios.post("https://meraki-academy-project-4.onrender.com/favorit/creat",bodyFav,{
           headers: {
             authorization: `Bearer ${token}`,
           },
@@ -124,7 +124,7 @@ export const CourseById = () => {
         
         <Button variant="primary" className="buttonCart" size="sm" onClick={()=>{
           const body={corse:elemId}
-          axios.post("http://localhost:5000/cart/creat",body,{
+          axios.post("https://meraki-academy-project-4.onrender.com/cart/creat",body,{
             headers: {
               authorization: `Bearer ${token}`,
             },
@@ -144,7 +144,7 @@ export const CourseById = () => {
     <InputGroup className="mb-3"  >
         <Button variant="primary" style={{marginTop:"10px"}} onClick={()=>{
           const textComment={comment:comment}
-          axios.post(`http://localhost:5000/comment/creat/${CourseById._id}`,textComment,{
+          axios.post(`https://meraki-academy-project-4.onrender.com/comment/creat/${CourseById._id}`,textComment,{
             headers: {
               authorization: `Bearer ${token}`,
             },

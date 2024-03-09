@@ -14,7 +14,7 @@ export const AllCourses = () => {
   const {elemId,setElemId,AllCourse, setAllCourse}=useContext(selectContext)
   useEffect(() => {
     axios
-      .get("http://localhost:5000/course/all/courses")
+      .get("https://meraki-academy-project-4.onrender.com/course/all/courses")
       .then((res) => {
         setAllCourse(res.data.courses);
       })

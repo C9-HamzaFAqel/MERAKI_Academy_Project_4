@@ -41,7 +41,7 @@ export function LoginTest() {
       const dataLogin = { email, password };
       
        axios
-        .post("http://localhost:5000/users/login", dataLogin)
+        .post("https://meraki-academy-project-4.onrender.com/users/login", dataLogin)
         .then((res) => {
           setToken(res.data.token)
           localStorage.setItem("token",res.data.token)

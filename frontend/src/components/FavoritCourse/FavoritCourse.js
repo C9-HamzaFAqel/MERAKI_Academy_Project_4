@@ -11,7 +11,7 @@ export const FavoritCourse = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/favorit/myFavorit", {
+      .get("https://meraki-academy-project-4.onrender.com/favorit/myFavorit", {
         headers: {
           authorization: `Bearer ${token}`,
         },

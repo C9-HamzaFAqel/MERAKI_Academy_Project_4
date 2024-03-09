@@ -10,7 +10,7 @@ export const CartCourse = () => {
     const navigate=useNavigate()
 
     useEffect(()=>{
-        axios.get("http://localhost:5000/cart/myCourse",{
+        axios.get("https://meraki-academy-project-4.onrender.com/cart/myCourse",{
             headers: {
               authorization: `Bearer ${token}`,
             }}).then((res)=>{

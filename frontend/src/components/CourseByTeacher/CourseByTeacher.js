@@ -20,7 +20,7 @@ export const CourseByTeacher = () => {
         
        const getCorseByTeacher = () => {
            axios
-             .get(`http://localhost:5000/course/serch_1/${teacher}`)
+             .get(`https://meraki-academy-project-4.onrender.com/course/serch_1/${teacher}`)
              .then((res) => {
                setCorse(res.data.courses);
              })
@@ -107,7 +107,7 @@ export const CourseByTeacher = () => {
 
         <Modal.Footer>
         <Button variant="primary" onClick={()=>{
-             axios.delete(`http://localhost:5000/course/${deletId}`,{
+             axios.delete(`https://meraki-academy-project-4.onrender.com/course/${deletId}`,{
               headers: {
                 authorization: `Bearer ${token}`,
               },

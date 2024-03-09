@@ -244,7 +244,7 @@ const uploadImage = () => {
               Image:url
             }
             axios
-            .post("http://localhost:5000/users/register/", body)
+            .post("https://meraki-academy-project-4.onrender.com/users/register/", body)
             .then((RegisterRes) => {navugate("/login")})
             .catch((err) => {
               console.log(err);
